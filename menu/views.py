@@ -31,6 +31,12 @@ class CookListView(generic.ListView):
     template_name = "menu/cook_list.html"
 
 
+class CookDetailView(generic.DetailView):
+    model = Cook
+    template_name = "menu/cook_detail.html"
+    context_object_name = "cook"
+
+
 class IngredientListView(generic.ListView):
     model = Ingredient
     queryset = Ingredient.objects.all()
@@ -51,7 +57,14 @@ class DishDetailView(generic.DetailView):
     context_object_name = "dish"
 
 
-class CookDetailView(generic.DetailView):
-    model = Cook
-    template_name = "menu/cook_detail.html"
-    context_object_name = "cook"
+def dish_list_by_ingredient(request, ingredient_id):
+    ingredient = Ingredient.objects.get(id=ingredient_id)
+    dishes = Dish.objects.filter(ingredients=ingredient)
+
+    context = {
+        'ingredient': ingredient,
+        'dishes': dishes
+    }
+
+    return render(request, 'menu/dish_list_by_ingredient.html', context)
+

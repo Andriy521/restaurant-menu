@@ -22,7 +22,9 @@ from menu.views import (
     CookListView,
     IngredientListView,
     DishTypeListView,
-    DishDetailView, CookDetailView,
+    DishDetailView,
+    CookDetailView,
+    dish_list_by_ingredient
 )
 
 urlpatterns = [
@@ -31,6 +33,7 @@ urlpatterns = [
     path("dishes/", DishListView.as_view(), name="dishes-list"),
     path("cooks/", CookListView.as_view(), name="cooks-list"),
     path("ingredients/", IngredientListView.as_view(), name="ingredients-list"),
+    path("ingredient/<int:ingredient_id>/dishes/", dish_list_by_ingredient, name='dish-list-by-ingredient'),
     path("types/", DishTypeListView.as_view(), name="types-list"),
     path("dishes/<int:pk>/", DishDetailView.as_view(), name="dish-detail"),
     path("cooks/<int:pk>/", CookDetailView.as_view(), name="cook-detail"),

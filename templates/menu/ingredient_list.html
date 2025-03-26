@@ -3,7 +3,9 @@
 {% block content %}
     <ul>
         {% for ingredient in ingredients_list %}
-            <li>{{ ingredient.name }}</li>
+            <li>
+                <a href="{% url 'dish-list-by-ingredient' ingredient.id %}">{{ ingredient.name }}</a>
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}

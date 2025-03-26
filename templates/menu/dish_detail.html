@@ -15,6 +15,13 @@
                 </li>
             {% endfor %}
         {% endif %}
-
+    </ul>
+    <h1>These ingredients are used:</h1>
+    <ul>
+      {% for ingredient in dish.ingredients.all %}
+      	<li>
+          <a href="{% url 'dish-list-by-ingredient' ingredient.id %}">{{ ingredient.name }}</a>
+        </li>
+      {% endfor %}
     </ul>
 {% endblock %}
