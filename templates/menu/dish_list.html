@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ul>
+        {% for dish in dishes_list %}
+            <li>{{ dish.name }}: {{ dish.price }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

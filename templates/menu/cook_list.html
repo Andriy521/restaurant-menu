@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ul>
+        {% for cook in cooks_list %}
+            {% if not cook.is_superuser %}
+                <li>
+                    {{ cook.username }} ({{ cook.first_name }} {{ cook.last_name }})
+                    years as a cooker: {{ cook.years_of_experience }}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}
