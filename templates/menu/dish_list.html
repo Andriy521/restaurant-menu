@@ -3,7 +3,10 @@
 {% block content %}
     <ul>
         {% for dish in dishes_list %}
-            <li>{{ dish.name }}: {{ dish.price }}</li>
+            <li>
+                <a class="link" href="{% url "dish-detail" dish.pk %}">{{ dish.name }}</a>: {{ dish.price }}
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}
+

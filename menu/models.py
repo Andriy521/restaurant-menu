@@ -56,7 +56,7 @@ class Dish(models.Model):
     cooks = models.ManyToManyField(
         Cook,
         blank=True,
-        related_name="cooks"
+        related_name="dishes",
     )
 
     def __str__(self):

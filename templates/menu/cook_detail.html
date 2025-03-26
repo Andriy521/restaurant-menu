@@ -1,0 +1,19 @@
+{% extends "base.html"%}
+
+{% block content %}
+	<h1>{{ cook.username }}</h1>
+    <p>{{ cook.first_name }} {{ cook.last_name }}</p>
+    <br>
+    <p>Hes work experience: {{ cook.years_of_experience }}</p>
+    <br>
+    {% if cook.dishes %}
+        <h1>He can cook:</h1>
+        <ul>
+        {% for dish in cook.dishes.all %}
+            <li>
+                <a class="link" href="{% url "dish-detail" dish.pk %}">{{ dish.name }}</a>: {{ dish.price }}
+            </li>
+        {% endfor %}
+    {% endif %}
+</ul>
+{% endblock %}
