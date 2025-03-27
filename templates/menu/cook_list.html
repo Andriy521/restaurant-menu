@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <form method="GET" action="{% url 'cooks-list' %}">
+        <input type="text" name="query" placeholder="Search cooks..." value="{{ request.GET.query }}">
+        <button type="submit">🔎</button>
+    </form>
     <h1>Cookers in restaurant</h1>
     <a href="{% url "cooks-create" %}">
       Add cooker

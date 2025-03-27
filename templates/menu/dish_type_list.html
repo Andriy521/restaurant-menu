@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <form method="GET" action="{% url 'types-list' %}">
+        <input type="text" name="query" placeholder="Search types..." value="{{ request.GET.query }}">
+        <button type="submit">🔎</button>
+    </form>
     <h1>
         <a href="{% url "types-create" %}" class="btn">Add type</a>
     </h1>

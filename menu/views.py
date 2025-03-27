@@ -23,10 +23,16 @@ def index(request):
 
 class DishListView(LoginRequiredMixin, generic.ListView):
     model = Dish
-    queryset = Dish.objects.all()
     context_object_name = "dishes_list"
     template_name = "menu/dish_list.html"
     paginate_by = 5
+
+    def get_queryset(self):
+        queryset = Dish.objects.all()
+        query = self.request.GET.get('query')
+        if query:
+            queryset = queryset.filter(name__icontains=query)
+        return queryset
 
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
@@ -54,10 +60,16 @@ class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
-    queryset = Cook.objects.all()
     context_object_name = "cooks_list"
     template_name = "menu/cook_list.html"
     paginate_by = 5
+
+    def get_queryset(self):
+        queryset = Cook.objects.all()
+        query = self.request.GET.get('query')
+        if query:
+            queryset = queryset.filter(username__icontains=query)
+        return queryset
 
 
 class CookDetailView(LoginRequiredMixin, generic.DetailView):
@@ -79,10 +91,16 @@ class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class IngredientListView(LoginRequiredMixin, generic.ListView):
     model = Ingredient
-    queryset = Ingredient.objects.all()
     context_object_name = "ingredients_list"
     template_name = "menu/ingredient_list.html"
     paginate_by = 5
+
+    def get_queryset(self):
+        queryset = Ingredient.objects.all()
+        query = self.request.GET.get('query')
+        if query:
+            queryset = queryset.filter(name__icontains=query)
+        return queryset
 
 
 class IngredientCreateView(LoginRequiredMixin, generic.CreateView):
@@ -108,6 +126,13 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "dish_types_list"
     template_name = "menu/dish_type_list.html"
     paginate_by = 5
+
+    def get_queryset(self):
+        queryset = DishType.objects.all()
+        query = self.request.GET.get('query')
+        if query:
+            queryset = queryset.filter(name__icontains=query)
+        return queryset
 
 
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):

@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <form method="GET" action="{% url 'ingredients-list' %}">
+        <input type="text" name="query" placeholder="Search ingredients..." value="{{ request.GET.query }}">
+        <button type="submit">🔎</button>
+    </form>
     <h1>
         <a href="{% url "ingredients-create" %}" class="btn">Add ingredient</a>
     </h1>
