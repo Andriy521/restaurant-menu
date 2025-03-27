@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <h1>Cookers in restaurant</h1>
+    <a href="{% url "cooks-create" %}">
+      Add cooker
+    </a>
     <ul>
         {% for cook in cooks_list %}
             {% if not cook.is_superuser %}
                 <li>
                     <a href="{% url "cook-detail" cook.pk %}">{{ cook.username }} ({{ cook.first_name }} {{ cook.last_name }})
                     years as a cooker: {{ cook.years_of_experience }}</a>
-
                 </li>
             {% endif %}
         {% endfor %}

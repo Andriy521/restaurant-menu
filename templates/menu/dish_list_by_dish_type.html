@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Dishes that use {{ dish_type.name }}</h1>
+
+<ul>
+    {% for dish in dishes %}
+        <li>
+            <a href="{% url "dish-detail" dish.id %}">{{ dish.name }}</a>
+        </li>
+    {% empty %}
+        <li>There is not any dishes of this type. </li>
+    {% endfor %}
+</ul>
+{% endblock %}
