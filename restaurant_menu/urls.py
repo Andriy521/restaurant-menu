@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path
 from menu.views import (
     index,
@@ -61,4 +62,6 @@ urlpatterns = [
     path("types/delete/<int:pk>/", DishTypeDeleteView.as_view(), name="types-delete"),
     path("dishes/<int:pk>/", DishDetailView.as_view(), name="dish-detail"),
     path("cooks/<int:pk>/", CookDetailView.as_view(), name="cook-detail"),
+    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
 ]
