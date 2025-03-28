@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<h1>Welcome to our restaurant</h1>
-    <p>In our restaurant we have {{ num_dishes }} dishes.</p>
-    <p>And we got {{ num_cooks }} cooks.</p>
+<div class="container text-center mt-5">
+    <h1 class="mb-4">Welcome to our restaurant</h1>
+    <p class="lead">In our restaurant we have <strong>{{ num_dishes }}</strong> dishes.</p>
+    <p class="lead">And we got <strong>{{ num_cooks }}</strong> cooks.</p>
+</div>
 {% endblock %}

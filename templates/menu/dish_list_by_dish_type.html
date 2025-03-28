@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Dishes that use {{ dish_type.name }}</h1>
+<div class="container mt-5">
+    <h1 class="mb-4">Dishes that use {{ dish_type.name }}</h1>
 
-<ul>
-    {% for dish in dishes %}
-        <li>
-            <a href="{% url "dish-detail" dish.id %}">{{ dish.name }}</a>
-        </li>
-    {% empty %}
-        <li>There is not any dishes of this type. </li>
-    {% endfor %}
-</ul>
+    <ul class="list-group">
+        {% for dish in dishes %}
+            <li class="list-group-item">
+                <a href="{% url 'dish-detail' dish.id %}" class="link">{{ dish.name }}</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">There are no dishes of this type.</li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

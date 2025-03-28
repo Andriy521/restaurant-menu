@@ -1,22 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form method="GET" action="{% url 'cooks-list' %}">
-        <input type="text" name="query" placeholder="Search cooks..." value="{{ request.GET.query }}">
-        <button type="submit">🔎</button>
+<div class="container mt-5">
+    <form method="GET" action="{% url 'cooks-list' %}" class="mb-4">
+        <div class="d-flex">
+            <input type="text" name="query" class="form-control me-2" placeholder="Search cooks..." value="{{ request.GET.query }}">
+            <button type="submit" class="btn btn-outline-primary">🔎</button>
+        </div>
     </form>
-    <h1>Cookers in restaurant</h1>
-    <a href="{% url "cooks-create" %}">
-      Add cooker
-    </a>
-    <ul>
+
+    <h1>Cooks in Restaurant</h1>
+    <a href="{% url 'cooks-create' %}" class="btn btn-success mb-3">Add Cook</a>
+
+    <ul class="list-group">
         {% for cook in cooks_list %}
             {% if not cook.is_superuser %}
-                <li>
-                    <a href="{% url "cook-detail" cook.pk %}">{{ cook.username }} ({{ cook.first_name }} {{ cook.last_name }})
-                    years as a cooker: {{ cook.years_of_experience }}</a>
+                <li class="list-group-item">
+                    <a href="{% url 'cook-detail' cook.pk %}" class="link">
+                        {{ cook.username }} ({{ cook.first_name }} {{ cook.last_name }})
+                        - Years as cook: {{ cook.years_of_experience }}
+                    </a>
                 </li>
             {% endif %}
         {% endfor %}
     </ul>
+</div>
 {% endblock %}

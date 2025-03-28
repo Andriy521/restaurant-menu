@@ -1,62 +1,91 @@
-html {
-    background-color: #4f4f4f;
-}
-
+/* Загальні стилі */
 body {
-    display: flex;
-    justify-content: center; /* Центрує блок по горизонталі */ /* Центрує блок по вертикалі */
-    height: 100vh;
+    background-color: #0d0d0d;
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
 }
 
+/* Контейнер */
 .container {
-    width: 50%;
-    min-width: 500px;
-    max-width: 800px;
-    padding: 20px;
-    background-color: #333;
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    margin-top: 80px;
-    min-height: auto;
+    max-width: 1100px;
+    margin: auto;
+    padding-top: 80px;
 }
 
+/* Хедер */
 .header {
-    position: fixed;
-    top: 5px;
-    left: 50%;
-    width: 50%;
-    min-width: 500px;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: white;
-    padding: 15px 20px;
+    background-color: #181818;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 12px 0;
+}
+
+/* Навігація */
+.nav {
     display: flex;
     justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    border-radius: 15px;
+    gap: 20px;
 }
 
-.nav-menu {
+.nav-item {
     list-style: none;
-    display: flex;
-    gap: 30px;
-    margin: 0;
-    padding: 0;
 }
 
-a {
+.nav-link {
+    color: #e0e0e0 !important;
     text-decoration: none;
-    color: white;
-    transition: color 0.3s ease;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
 }
 
-.nav-menu a {
-    font-size: 22px;
+.nav-link:hover {
+    background-color: #292929;
+    color: #ffcc00 !important;
 }
 
-a:hover {
-    color: #ffcc00;
+/* Контент */
+.content {
+    min-height: 70vh;
+    padding: 30px;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Футер */
+.footer {
+    background-color: #181818;
+    padding: 12px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+}
+
+/* Пагінація */
+.pagination {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.pagination .page-link {
+    color: #e0e0e0;
+    background-color: #252525;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 8px 14px;
+    transition: all 0.3s ease-in-out;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #ffcc00;
+    border-color: #ffcc00;
+    color: #000 !important;
+}
+
+.pagination .page-link:hover {
+    background-color: #3a3a3a;
+    border-color: #444;
 }

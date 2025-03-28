@@ -6,7 +6,7 @@ from menu.models import Cook
 class CookCreationForm(UserCreationForm):
     class Meta(UserCreationForm):
         model = Cook
-        fields = UserCreationForm.Meta.fields + ("years_of_experience",)
+        fields = UserCreationForm.Meta.fields + ("first_name", "last_name", "years_of_experience",)
 
 
 class SearchForm(forms.Form):

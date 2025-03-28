@@ -1,20 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form method="GET" action="{% url 'dishes-list' %}">
-        <input type="text" name="query" placeholder="Search dishes..." value="{{ request.GET.query }}">
-        <button type="submit">🔎</button>
+<div class="container mt-5">
+    <form method="GET" action="{% url 'dishes-list' %}" class="mb-4">
+        <div class="d-flex">
+            <input type="text" name="query" class="form-control me-2" placeholder="Search dishes..." value="{{ request.GET.query }}">
+            <button type="submit" class="btn btn-outline-primary">🔎</button>
+        </div>
     </form>
-    <h1>
-    Dishes we got:
-    <a href="{% url "dishes-create" %}" class="btn">Add dish</a>
+
+    <h1 class="mb-4">
+        Dishes We Got
+        <a href="{% url 'dishes-create' %}" class="btn btn-success float-end">Add Dish</a>
     </h1>
-    <ul>
+
+    <ul class="list-group">
         {% for dish in dishes_list %}
-            <li>
-                <a class="link" href="{% url "dish-detail" dish.pk %}">{{ dish.name }}</a>: {{ dish.price }}
+            <li class="list-group-item">
+                <a href="{% url 'dish-detail' dish.pk %}" class="link">{{ dish.name }}</a>: {{ dish.price }} USD
             </li>
         {% endfor %}
     </ul>
+</div>
 {% endblock %}
 
