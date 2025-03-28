@@ -1,0 +1,39 @@
+<header class="header fixed-top bg-dark py-3 shadow">
+    <nav>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link text-light fw-bold" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light fw-bold" href="{% url 'ingredients-list' %}">Ingredients</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light fw-bold" href="{% url 'dishes-list' %}">Dishes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light fw-bold" href="{% url 'types-list' %}">Types</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light fw-bold" href="{% url 'cooks-list' %}">Cooks</a>
+            </li>
+
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{{ user.get_absolute_url }}" class="nav-link text-warning fw-bold">
+                        User: {{ user.get_username }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <form action="{% url 'logout' %}" method="POST" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-light ms-3">Logout</button>
+                    </form>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'login' %}?next={{ request.path }}" class="nav-link text-light fw-bold">Login</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
