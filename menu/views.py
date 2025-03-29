@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.views import generic
 from django.urls import reverse_lazy
 from menu.forms import CookCreationForm
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from menu.models import Dish, DishType, Cook, Ingredient
@@ -24,7 +23,7 @@ def index(request):
 class DishListView(LoginRequiredMixin, generic.ListView):
     model = Dish
     context_object_name = "dishes_list"
-    template_name = "menu/dish_list.html"
+    template_name = "menu/dishes_list.html"
     paginate_by = 5
 
     def get_queryset(self):
@@ -152,28 +151,31 @@ class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("types-list")
 
 
+class DishListByIngredientView(LoginRequiredMixin, generic.ListView):
+    model = Dish
+    template_name = 'menu/dish_list_by_ingredient.html'
+    context_object_name = 'dishes'
 
-@login_required()
-def dish_list_by_ingredient(request, ingredient_id):
-    ingredient = Ingredient.objects.get(id=ingredient_id)
-    dishes = Dish.objects.filter(ingredients=ingredient)
+    def get_queryset(self):
+        ingredient = Ingredient.objects.get(id=self.kwargs['ingredient_id'])
+        return Dish.objects.filter(ingredients=ingredient)
 
-    context = {
-        'ingredient': ingredient,
-        'dishes': dishes
-    }
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['ingredient'] = Ingredient.objects.get(id=self.kwargs['ingredient_id'])
+        return context
 
-    return render(request, 'menu/dish_list_by_ingredient.html', context)
 
-@login_required()
-def dish_list_by_type(request, type_id):
-    dish_type = DishType.objects.get(id=type_id)
-    dishes = Dish.objects.filter(dish_type=dish_type)
+class DishListByTypeView(LoginRequiredMixin, generic.ListView):
+    model = Dish
+    template_name = 'menu/dish_list_by_dish_type.html'
+    context_object_name = 'dishes'
 
-    context = {
-        'dish_type': dish_type,
-        'dishes': dishes
-    }
+    def get_queryset(self):
+        dish_type = DishType.objects.get(id=self.kwargs['type_id'])
+        return Dish.objects.filter(dish_type=dish_type)
 
-    return render(request, 'menu/dish_list_by_dish_type.html', context)
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['dish_type'] = DishType.objects.get(id=self.kwargs['type_id'])
+        return context
