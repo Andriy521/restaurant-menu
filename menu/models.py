@@ -46,7 +46,7 @@ class Dish(models.Model):
     dish_type = models.ForeignKey(
         DishType,
         on_delete=models.CASCADE,
-        related_name="dish_type"
+        related_name="dish_type",
     )
     ingredients = models.ManyToManyField(
         Ingredient,
