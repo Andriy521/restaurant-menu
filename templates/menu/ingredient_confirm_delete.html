@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1>Delete ingredient?</h1>
+    <form action="" method="post" class="mt-3">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a href="{% url 'ingredients-list' %}" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>
+{% endblock %}

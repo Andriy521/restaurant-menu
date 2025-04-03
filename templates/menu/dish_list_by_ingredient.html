@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Dishes that use {{ ingredient.name }}</h1>
+
+    <ul class="list-group">
+        {% for dish in dishes %}
+            <li class="list-group-item">
+                <a href="{% url 'dish-detail' dish.id %}" class="link">{{ dish.name }}</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">There are no dishes with this ingredient.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
